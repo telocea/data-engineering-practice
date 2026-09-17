@@ -17,7 +17,11 @@ RUN wget https://archive.apache.org/dist/spark/spark-3.0.1/spark-3.0.1-bin-hadoo
 WORKDIR app
 COPY . /app
 
-RUN pip3 install markupsafe==1.1.1 cryptography==3.3.2 cython==0.29.21 numpy==1.18.5 && pip3 install -r requirements.txt
+RUN pip3 install --upgrade pip setuptools wheel
+RUN pip3 install markupsafe==1.1.1 cryptography==3.4.8 cython==0.29.21 numpy==1.19.5 && pip3 install -r requirements.txt
 
 ENV PYSPARK_PYTHON=python3
 ENV PYSPARK_SUBMIT_ARGS='--packages io.delta:delta-core_2.12:0.8.0 pyspark-shell'
+ENV PYTHONIOENCODING=utf-8
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
